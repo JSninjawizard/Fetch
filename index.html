@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+
+const randomize = (r, g, b) => {
+    r = Math.floor(Math.random() * (255 - 1) + 1)
+    g = Math.floor(Math.random() * (255 - 1) + 1)
+    b = Math.floor(Math.random() * (255 - 1) + 1)
+
+    const final = `rgb(${r},${g},${b})`
+    return final
+}
+
+let results = randomize().slice(4,-1)
+
+let globalScopeVar
+      fetch(`https://www.thecolorapi.com/id?hex=0047AB&rgb=${results}format=json`)
+        .then((response) => response.json())
+        // .then((json) => console.log(json));
+        .then((json) => {
+            let colorName = json.name.value
+            console.log(colorName);
+            globalScopeVar = json.name.value
+        });
+        
+        console.log(globalScopeVar);
+    </script>
+  </body>
+</html>
